@@ -36,18 +36,18 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 interface Option {
   label: string
-  value: string | number
+  value: string | number | boolean| null
 }
 
 const props = defineProps<{
-  modelValue: string | number
+  modelValue: string | number | boolean| null
   options: Option[]
   label: string
   disabled?: boolean
 }>()
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: string | number ): void
+  (e: 'update:modelValue', value: string | number | boolean | null): void
 }>()
 
 const isOpen = ref(false)

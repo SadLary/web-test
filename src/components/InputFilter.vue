@@ -1,4 +1,5 @@
 <template>
+  <div class="input-wrapper">
   <input
     class="input"
     :value="modelValue"
@@ -9,6 +10,7 @@
   <span v-if="$slots.icon" class="input__icon">
     <slot name="icon" />
   </span>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -24,8 +26,15 @@ const emit = defineEmits<{
 </script>
 
 <style scoped>
+.input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
 .input {
-  padding: 10px 14px;
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 15px;
   background: #00495a;
   border: none;
   border-radius: 6px;
@@ -42,5 +51,11 @@ const emit = defineEmits<{
 
 .input:focus::placeholder {
   color: transparent;
+}
+.input__icon {
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  pointer-events: none;
 }
 </style>
