@@ -31,3 +31,9 @@ export const regionsOptions = [
   { label: 'СПБ',  value: 'СПБ' },
   { label: 'МОО',   value: 'МОО' },
 ]
+
+export const WEAPON_LABELS: Record<string, string> = { E: 'Шпага', S: 'Сабля', F: 'Рапира' }
+export const GENDER_LABELS: Record<string, string> = { M: 'М', F: 'Ж' }
+export const AGE_LABELS: Record<string, string> = {
+  K: '2010 и моложе', J: '2010-2012', U23: 'До 23', A: 'Взрослые', V: 'Ветераны',
+}

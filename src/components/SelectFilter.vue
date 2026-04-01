@@ -125,7 +125,7 @@ onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
 
 .select__value {
   font-size: 15px;
-  color: #d0d5e0;
+  color: #fff;
   line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
@@ -157,7 +157,7 @@ onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
 .select__option {
   padding: 8px 10px;
   font-size: 14px;
-  color: #c4c9d4;
+  color: #fff;
   cursor: pointer;
   transition: background 0.1s;
   white-space: nowrap;

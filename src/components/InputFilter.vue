@@ -39,7 +39,7 @@ const emit = defineEmits<{
   border: none;
   border-radius: 6px;
   font-size: 16px;
-  color: #d0d5e0;
+  color: #fff;
   outline: none;
 }
 

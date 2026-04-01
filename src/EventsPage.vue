@@ -34,12 +34,10 @@
       <FilterInput
         v-model="filters.from"
         placeholder="Дата с"
-        type="date"
       />
       <FilterInput
         v-model="filters.to"
         placeholder="Дата по"
-        type="date"
       />
     </div>
 
@@ -64,13 +62,26 @@
       </button>
     </div>
 
+    <div v-if="loading" class="calendar__state">Загрузка...</div>
+    <div v-else-if="error" class="calendar__state calendar__state--error">{{ error }}</div>
+ 
+    <template v-else>
+      <EventTable :events="filteredEvents" />
+ 
+      <div v-if="!filteredEvents.length" class="calendar__state">
+        Ничего не найдено
+      </div>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { ref, reactive, computed, watch, onMounted} from 'vue'
 import FilterSelect from '@/components/SelectFilter.vue'
 import FilterInput from '@/components/InputFilter.vue'
+import AppHeader from './components/AppHeader.vue'
+import EventTable from '@/components/EventTable.vue'
+import { useEvents } from '@/composable/useEvent'
 import {
   regionsOptions,
   weaponOptions,
@@ -79,7 +90,7 @@ import {
   categoryOptions,
 } from '@/constants/filter'
 import { EventFilters } from '@/types/event'
-import AppHeader from './components/AppHeader.vue'
+
 
 const filters = reactive<EventFilters>({
   region: '',
@@ -93,6 +104,7 @@ const filters = reactive<EventFilters>({
 })
 
 const searchQuery = ref('')
+const { events, loading, error, fetchEvents } = useEvents(filters)
 
 function resetFilters() {
   filters.region = ''
@@ -106,6 +118,15 @@ function resetFilters() {
   searchQuery.value = ''
 }
 
+const filteredEvents = computed(() => {
+  if (!searchQuery.value) return events.value
+  const q = searchQuery.value.toLowerCase()
+  return events.value.filter(e => e.event_name.toLowerCase().includes(q))
+})
+
+watch(filters, fetchEvents, { deep: true })
+ 
+onMounted(fetchEvents)
 </script>
 
 <style scoped>
@@ -113,7 +134,7 @@ function resetFilters() {
   padding: 15px;
   background: #04171C;
   min-height: 100vh;
-  color: #c8cdd8;
+  color: #fff;
   font-family: sans-serif;
 }
 
@@ -132,11 +153,11 @@ function resetFilters() {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 45px;
 }
 
 .calendar__search-wrapper {
-  width: 71.4%;
+  width: 75%;
 }
 
 .calendar__search-input {
