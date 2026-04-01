@@ -1,16 +1,30 @@
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div>
+    <SelectFilter
+      v-model="selectedRegion"
+      label="Регион"
+      placeholder="Все"
+      :options="regions"
+    />
+    <InputFilter
+      v-model="serie"
+      placeholder="Введите регион"
+    />
+  </div>
 </template>
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+import SelectFilter from './shared/SelectFilter.vue';
+import InputFilter from './shared/InputFilter.vue';
 
-const username = 'Webclient';
-const password = 'Yogi543';
+const regions = [
+  { label: 'Все', value: '' },
+  { label: 'СПБ',  value: 'СПБ' },
+  { label: 'МОО',   value: 'МОО' },
+]
 
+const selectedRegion = ref(regions[0].value)
+const serie = ref('')
 
 onMounted(async () => {
 
@@ -22,7 +36,9 @@ onMounted(async () => {
     'Content-Type': 'application/json',
   },
 });
-  console.log(data.json());
+  const jsonData = await data.json();
+
+  console.log(jsonData);
 })
 </script>
 
