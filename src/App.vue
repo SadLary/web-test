@@ -114,7 +114,7 @@ function resetFilters() {
   background: #04171C;
   min-height: 100vh;
   color: #c8cdd8;
-  font-family: -apple-system, 'Segoe UI', sans-serif;
+  font-family: sans-serif;
 }
 
 .calendar__filters {

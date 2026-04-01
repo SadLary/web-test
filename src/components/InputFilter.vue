@@ -41,7 +41,6 @@ const emit = defineEmits<{
   font-size: 16px;
   color: #d0d5e0;
   outline: none;
-  transition: background 0.12s;
 }
 
 .input::placeholder {

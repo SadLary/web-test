@@ -83,7 +83,6 @@ onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
   display: inline-block;
   min-width: 130px;
   font-family: sans-serif;
-  user-select: none;
 }
 
 .select__trigger {
@@ -95,7 +94,6 @@ onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
   background: #00495a;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.12s;
 }
 
 .select__trigger:hover {
@@ -109,7 +107,6 @@ onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
 
 .select--disabled .select__trigger {
   opacity: 0.45;
-  cursor: not-allowed;
 }
 
 .select__texts {
@@ -138,7 +135,7 @@ onUnmounted(() => document.removeEventListener('mousedown', onClickOutside))
 .select__arrow {
   flex-shrink: 0;
   margin-top: 2px;
-  transition: transform 0.18s ease;
+  transition: transform 0.3s ease;
 }
 
 .select--open .select__arrow {
