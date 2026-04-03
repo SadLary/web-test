@@ -89,7 +89,7 @@ import {
   ageOptions,
   categoryOptions,
 } from '@/constants/filter'
-import { EventFilters } from '@/types/event'
+import type { EventFilters } from '@/types/event'
 
 
 const filters = reactive<EventFilters>({
